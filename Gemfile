@@ -3,6 +3,7 @@ ruby '2.0.0'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 	gem 'rails', '4.0.0'
+	gem 'jquery-rails'
 	gem 'devise'
 	gem 'protected_attributes'
 	gem 'simple_form'
