@@ -7,6 +7,7 @@ ruby '2.0.0'
 	gem 'devise'
 	gem 'protected_attributes'
 	gem 'simple_form'
+	gem 'paperclip', github: 'thoughtbot/paperclip', branch: 'rails-4'
 #Rails 4 requires a gem rails_12factor in order to configure your application logs to be visible via heroku logs and to serve static assets.
 	gem 'rails_12factor', group: :production
 
