@@ -8,6 +8,13 @@ ruby '2.0.0'
 	gem 'protected_attributes'
 	gem 'simple_form'
 	gem 'paperclip', github: 'thoughtbot/paperclip', branch: 'rails-4'
+	gem 'protected_attributes'
+	gem 'rails-observers'
+	gem 'actionpack-page_caching'
+	gem 'actionpack-action_caching'
+
+
+	# gem "paperclip", "~> 3.0"
 #Rails 4 requires a gem rails_12factor in order to configure your application logs to be visible via heroku logs and to serve static assets.
 	gem 'rails_12factor', group: :production
 

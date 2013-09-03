@@ -11,6 +11,7 @@ class PinsController < ApplicationController
   # GET /pins/1
   # GET /pins/1.json
   def show
+  @pin =Pin.find(params[:id])
   end
 
   # GET /pins/new
@@ -26,7 +27,7 @@ class PinsController < ApplicationController
   # POST /pins
   # POST /pins.json
   def create
-    @pin = current_user.pins.new(pin_params)
+    @pin = current_user.pins.new(pin_params[:pin])
 
     respond_to do |format|
       if @pin.save
@@ -47,10 +48,10 @@ class PinsController < ApplicationController
     respond_to do |format|
       if @pin.update(pin_params)
         format.html { redirect_to @pin, notice: 'Pin was successfully updated.' }
-        format.json { head :no_content }
+        #format.json { head :no_content }
       else
         format.html { render action: 'edit' }
-        format.json { render json: @pin.errors, status: :unprocessable_entity }
+        #format.json { render json: @pin.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -62,7 +63,7 @@ class PinsController < ApplicationController
     @pin.destroy
     respond_to do |format|
       format.html { redirect_to pins_url }
-      format.json { head :no_content }
+      #format.json { head :no_content }
     end
   end
 
@@ -73,10 +74,8 @@ class PinsController < ApplicationController
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
-    def pin_params
-      params.require(:pin).permit(:description)
-  end
-    def pin_params
-     params.require(:pin).permit(:description, :image)
-  end
+      def pin_params
+        params.require(:pin).permit(:description, :image)
+      end
+    
 end
