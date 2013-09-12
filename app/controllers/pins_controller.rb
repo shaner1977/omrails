@@ -6,17 +6,32 @@ class PinsController < ApplicationController
   # GET /pins.json
   def index
     @pins = Pin.all
+
+    respond_to do |format|
+      format.html # index.html.erb
+      format.json { render json: @pins }
+    end
   end
 
   # GET /pins/1
   # GET /pins/1.json
   def show
-  @pin =Pin.find(params[:id])
+  @pin = Pin.find(params[:id])
+
+    respond_to do |format|
+      format.html # show.html.erb
+      format.json { render json: @pin }
+    end
   end
 
   # GET /pins/new
   def new
     @pin = current_user.pins.new
+
+      respond_to do |format|
+        format.html # new.html.erb
+        format.json { render json: @pin }
+    end
   end
 
   # GET /pins/1/edit
@@ -27,7 +42,7 @@ class PinsController < ApplicationController
   # POST /pins
   # POST /pins.json
   def create
-    @pin = current_user.pins.new(pin_params[:pin])
+    @pin = current_user.pins.new(params[:pin])
 
     respond_to do |format|
       if @pin.save
@@ -46,12 +61,12 @@ class PinsController < ApplicationController
     @pin = current_user.pins.find(params[:id])
 
     respond_to do |format|
-      if @pin.update(pin_params)
+      if @pin.update_attributes(pin_params)
         format.html { redirect_to @pin, notice: 'Pin was successfully updated.' }
-        #format.json { head :no_content }
+        format.json { head :no_content }
       else
         format.html { render action: 'edit' }
-        #format.json { render json: @pin.errors, status: :unprocessable_entity }
+        format.json { render json: @pin.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -61,12 +76,13 @@ class PinsController < ApplicationController
   def destroy
     @pin = current_user.pins.find(params[:id])
     @pin.destroy
+    
     respond_to do |format|
       format.html { redirect_to pins_url }
-      #format.json { head :no_content }
+      format.json { head :no_content }
+      end
     end
   end
-
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_pin
@@ -78,4 +94,4 @@ class PinsController < ApplicationController
         params.require(:pin).permit(:description, :image)
       end
     
-end
+#end
